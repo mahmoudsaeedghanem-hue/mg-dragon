@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="MG Dragon: خدمات تصميم فوتوشوب ومونتاج وفيديوهات بالذكاء الاصطناعي وتسويق وإدارة صفحات، مع باقات جاهزة وحاسبة أسعار.">
+<meta property="og:title" content="MG Dragon">
+<meta property="og:description" content="تصميم ومونتاج وفيديوهات AI وتسويق وإدارة صفحات بأسعار واضحة.">
+<meta name="theme-color" content="#09090B">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>MG Dragon | تصميم ومونتاج وفيديوهات AI وتسويق</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Tajawal:wght@400;500;700&display=swap">
+<style>
+/* Layout: dark "obsidian studio" with motion as the idea. Hero = kinetic headline over an interactive particle field + a live video-editor timeline card; kinetic marquee; spotlight glass cards; plans with a rotating gradient border; calculator with animated totals. */
+:root{
+  --bg:#09090B; --card:#121216; --ink:#F4F4F5; --muted:#A1A1AA;
+  --line:rgba(255,255,255,.08); --line-strong:rgba(255,255,255,.15);
+  --purple:#8B5CF6; --cyan:#06B6D4; --amber:#F59E0B;
+  --purple-t:#A78BFA; --cyan-t:#22D3EE; --emerald:#34D399; --pink:#F472B6;
+  --grad:linear-gradient(100deg,#8B5CF6,#06B6D4);
+  --font-display:'Cairo','Segoe UI',Tahoma,sans-serif;
+  --font-body:'Tajawal','Segoe UI',Tahoma,sans-serif;
+  color-scheme:dark;
+}
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:90px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.75 var(--font-body);direction:rtl}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60}
+h1,h2,h3,p{margin:0}
+.prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:3px;z-index:61;background:var(--grad);transform:scaleX(0);transform-origin:100% 50%}
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ambient i{position:absolute;border-radius:50%}
+.ambient i:nth-child(1){width:720px;height:720px;top:-300px;right:-260px;background:radial-gradient(circle,rgba(139,92,246,.30),transparent 65%);animation:d1 22s ease-in-out infinite alternate}
+.ambient i:nth-child(2){width:680px;height:680px;top:34%;left:-300px;background:radial-gradient(circle,rgba(6,182,212,.20),transparent 65%);animation:d2 26s ease-in-out infinite alternate}
+.ambient i:nth-child(3){width:720px;height:720px;bottom:-340px;right:18%;background:radial-gradient(circle,rgba(245,158,11,.13),transparent 65%);animation:d3 30s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(-140px,180px) scale(1.15)}}
+@keyframes d2{to{transform:translate(160px,-120px) scale(1.2)}}
+@keyframes d3{to{transform:translate(-200px,-80px) scale(1.1)}}
+#app{position:relative;z-index:1}
+.wrap{width:100%;max-width:1160px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--cyan-t);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.glass{background:linear-gradient(145deg,rgba(24,24,30,.86),rgba(14,14,18,.94));border:1px solid var(--line);border-radius:22px;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.spot{position:relative}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),rgba(139,92,246,.17),transparent 60%)}
+.spot:hover::after{opacity:1}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.55em;min-height:48px;padding:0 1.4rem;border-radius:14px;border:1px solid transparent;background:var(--grad);color:#09090B;font:800 1rem/1.2 var(--font-display);text-decoration:none;cursor:pointer;box-shadow:0 10px 28px -10px rgba(139,92,246,.55)}
+.btn::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);transform:translateX(-130%);transition:transform .7s}
+.btn:hover::after{transform:translateX(130%)}
+.btn.ghost{background:rgba(255,255,255,.05);border-color:var(--line-strong);color:var(--ink);box-shadow:none;font-weight:700}
+.btn.ghost::after{display:none}
+.btn.ghost:hover{background:rgba(255,255,255,.1)}
+.btn.disabled{opacity:.4;pointer-events:none}
+.btn.sm{min-height:42px;padding:0 1.1rem;font-size:.92rem;border-radius:12px}
+.btn svg{flex:none}
+
+/* scroll reveal (movement only, content stays visible) */
+.rv{translate:0 34px;transition:translate .9s cubic-bezier(.22,1,.36,1)}
+.rv.in{translate:0 0}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(9,9,11,.84);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);direction:ltr}
+.mark{width:42px;height:42px;border-radius:14px;padding:1.5px;background:conic-gradient(from var(--ang),var(--purple),#4F46E5,var(--cyan),var(--purple));flex:none}
+.mark span{display:grid;place-items:center;width:100%;height:100%;border-radius:12.5px;background:var(--bg);font:900 .95rem var(--font-display)}
+@keyframes spin{to{--ang:360deg}}
+.brand-name{display:block;font:900 1.45rem/1.1 var(--font-display);background:linear-gradient(90deg,#fff,#E4E4E7 50%,var(--purple-t));-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-sub{display:block;font:500 .66rem/1.3 var(--font-body);color:var(--muted);letter-spacing:.04em}
+.top nav{display:none;gap:26px;margin-inline-start:auto}
+.top nav a{color:#D4D4D8;text-decoration:none;font-weight:700;font-size:.95rem}
+.top nav a:hover{color:#fff}
+.top-act{display:flex;align-items:center;gap:10px;margin-inline-start:auto}
+.menu-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);background:rgba(255,255,255,.05);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.mmenu{border-top:1px solid var(--line);padding-block:10px 18px}
+.mmenu a{display:block;padding:11px 14px;border-radius:12px;color:var(--ink);text-decoration:none;font-weight:700}
+.mmenu a:hover{background:rgba(255,255,255,.06)}
+@media (min-width:900px){.top nav{display:flex}.top-act{margin-inline-start:0}.menu-btn{display:none}}
+@media (max-width:420px){.brand-sub{display:none}.top .btn span.lbl{display:none}.top .btn{padding:0 .9rem}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:56px 84px}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background-size:44px 44px;background-image:linear-gradient(to right,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.035) 1px,transparent 1px);-webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent);mask-image:linear-gradient(to bottom,#000 30%,transparent)}
+#fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .wrap{position:relative;display:grid;gap:48px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.hero .wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;gap:56px}}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:99px;background:rgba(139,92,246,.14);border:1px solid rgba(139,92,246,.34);color:var(--purple-t);font-weight:700;font-size:.9rem}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--cyan-t);animation:ping 1.8s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(34,211,238,.7)}100%{box-shadow:0 0 0 10px rgba(34,211,238,0)}}
+.hero h1{font:900 clamp(2.1rem,6vw,3.6rem)/1.35 var(--font-display);text-wrap:balance;margin:18px 0 16px}
+.w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-block:.1em;margin-block:-.1em}
+.w>span{display:inline-block;animation:rise 1s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i)*80ms + 150ms)}
+.w.g>span{background:linear-gradient(100deg,#8B5CF6,#06B6D4,#8B5CF6);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1s cubic-bezier(.22,1,.36,1) both,shimmer 6s linear infinite;animation-delay:calc(var(--i)*80ms + 150ms),0s}
+@keyframes rise{from{transform:translateY(115%)}}
+@keyframes shimmer{to{background-position:-200% 0}}
+.lead{color:var(--muted);font-size:1.1rem;max-width:36em}
+.lead b{color:#E4E4E7;font-weight:700}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:30rem;margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+.stats strong{display:block;font:900 2rem/1.1 var(--font-display);font-variant-numeric:tabular-nums}
+.stats span{color:var(--muted);font-size:.88rem}
+
+/* studio timeline card */
+.studio{position:relative;direction:ltr;padding:16px;display:grid;gap:12px;border-radius:20px}
+.studio::before{content:"";position:absolute;inset:-2px;z-index:-1;border-radius:22px;background:linear-gradient(120deg,var(--purple),var(--cyan),var(--amber));opacity:.3;filter:blur(18px)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.st-head{display:flex;align-items:center;gap:10px;font:700 .68rem var(--font-body);color:var(--muted);letter-spacing:.1em}
+.dots{display:flex;gap:6px}
+.dots i{width:9px;height:9px;border-radius:50%}
+.dots i:nth-child(1){background:var(--pink)}.dots i:nth-child(2){background:var(--amber)}.dots i:nth-child(3){background:var(--emerald)}
+.rec{margin-left:auto;display:flex;align-items:center;gap:6px;color:#F87171}
+.rec i{width:8px;height:8px;border-radius:50%;background:#F87171;animation:blink 1.2s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.st-view{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0B0B10;border:1px solid var(--line)}
+.orb{position:absolute;border-radius:50%;aspect-ratio:1}
+.o1{width:62%;left:-12%;top:-26%;background:radial-gradient(circle,rgba(139,92,246,.9),transparent 65%);animation:o1 7s ease-in-out infinite alternate}
+.o2{width:58%;right:-10%;bottom:-30%;background:radial-gradient(circle,rgba(6,182,212,.85),transparent 65%);animation:o2 8s ease-in-out infinite alternate}
+.o3{width:40%;left:38%;top:-12%;background:radial-gradient(circle,rgba(245,158,11,.6),transparent 65%);animation:o3 9s ease-in-out infinite alternate}
+@keyframes o1{to{transform:translate(40%,40%) scale(1.2)}}
+@keyframes o2{to{transform:translate(-50%,-30%) scale(1.15)}}
+@keyframes o3{to{transform:translate(-40%,90%) scale(.8)}}
+.ring{position:absolute;left:50%;top:50%;width:34%;aspect-ratio:1;margin:-17% 0 0 -17%;border-radius:50%;padding:3px;background:conic-gradient(#8B5CF6,#06B6D4,#F59E0B,#8B5CF6);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rot 6s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.ring-t{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font:900 clamp(1rem,3.4vw,1.5rem) var(--font-display);letter-spacing:.04em}
+.l3{position:absolute;left:0;bottom:11%;display:flex;align-items:stretch;transform:translateX(-110%);animation:l3 7s cubic-bezier(.22,1,.36,1) infinite}
+.l3 b{width:5px;background:var(--grad)}
+.l3 span{padding:4px 12px;background:rgba(9,9,11,.82);font:800 .66rem var(--font-body);letter-spacing:.12em}
+@keyframes l3{0%{transform:translateX(-110%)}12%,70%{transform:translateX(0)}84%,100%{transform:translateX(-110%)}}
+.st-time{display:flex;justify-content:space-between;font:600 .72rem var(--font-body);color:var(--muted);letter-spacing:.08em}
+.st-time #tc{color:var(--cyan-t);font-variant-numeric:tabular-nums}
+.tl{position:relative;display:grid;gap:6px}
+.tr{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:center}
+.tr b{font:800 .62rem var(--font-body);letter-spacing:.08em;color:var(--muted)}
+.lane{position:relative;height:28px;border-radius:7px;background:rgba(255,255,255,.04)}
+.clip{position:absolute;top:3px;bottom:3px;border-radius:6px;display:flex;align-items:center;padding:0 8px;font:800 .56rem var(--font-body);letter-spacing:.1em;color:#09090B;white-space:nowrap;overflow:hidden}
+.k1{background:linear-gradient(90deg,#8B5CF6,#A78BFA)}
+.k2{background:linear-gradient(90deg,#06B6D4,#22D3EE)}
+.k3{background:linear-gradient(90deg,#F59E0B,#FBBF24)}
+.k4{background:linear-gradient(90deg,#F472B6,#F9A8D4)}
+.wave{display:flex;align-items:center;gap:2px;padding-inline:3px}
+.wave i{flex:1;max-width:4px;min-width:1px;border-radius:2px;background:linear-gradient(#22D3EE,#8B5CF6);animation:wv .9s ease-in-out infinite alternate}
+@keyframes wv{from{transform:scaleY(.4)}to{transform:scaleY(1)}}
+.ph-wrap{position:absolute;inset:-4px 0 -4px 38px;pointer-events:none}
+.ph{position:absolute;top:0;bottom:0;left:38%;width:2px;background:#fff;box-shadow:0 0 12px rgba(255,255,255,.8)}
+.ph::before{content:"";position:absolute;top:-1px;left:-4px;width:10px;height:8px;background:#fff;border-radius:2px 2px 5px 5px}
+.fchip{position:absolute;padding:4px 14px;border-radius:99px;font:800 .75rem var(--font-display);background:rgba(18,18,22,.92);border:1px solid var(--line-strong);animation:bob 5s ease-in-out infinite}
+.fchip.a{top:-16px;right:28px;color:var(--purple-t)}
+.fchip.b{bottom:-16px;left:30px;color:var(--cyan-t);animation-delay:-2s}
+.fchip.c{top:42%;right:-10px;color:var(--amber);animation-delay:-3.5s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);background:rgba(255,255,255,.02);direction:ltr;padding-block:18px}
+.mq-track{display:flex;width:max-content;animation:mq 42s linear infinite}
+.marquee:hover .mq-track{animation-play-state:paused}
+.mq-item{display:flex;align-items:center;gap:28px;padding-inline:14px;white-space:nowrap;font:900 clamp(1.6rem,4.4vw,3rem)/1.3 var(--font-display)}
+.mq-item::after{content:"";width:12px;height:12px;border-radius:3px;transform:rotate(45deg);background:var(--grad);flex:none}
+.mq-item.fill{color:#E4E4E7;direction:rtl}
+.mq-item.line{color:transparent;-webkit-text-stroke:1.3px rgba(167,139,250,.8)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+.s{position:relative;padding-block:72px}
+.sh{max-width:44rem;margin-bottom:38px}
+.eyebrow{display:block;color:var(--cyan-t);font-weight:800;font-size:.92rem;margin-bottom:6px}
+.sh h2{font:900 clamp(1.7rem,4.2vw,2.5rem)/1.3 var(--font-display);text-wrap:balance;margin-bottom:10px}
+.sh p{color:var(--muted)}
+
+/* services */
+.grid3{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.svc{display:flex;flex-direction:column;gap:14px;padding:28px;min-width:0;transition:border-color .3s,transform .3s,box-shadow .3s}
+.svc:hover{border-color:rgba(139,92,246,.45);box-shadow:0 20px 40px -18px rgba(139,92,246,.3)}
+@media (prefers-reduced-motion:no-preference){.svc:hover{transform:translateY(-5px)}}
+.ico{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 15%,transparent);border:1px solid color-mix(in srgb,var(--c) 32%,transparent);flex:none;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.svc:hover .ico{transform:rotate(-8deg) scale(1.1)}
+.ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font:800 1.3rem/1.4 var(--font-display)}
+.svc p{color:var(--muted);font-size:.97rem}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.chips li{font-size:.82rem;padding:2px 10px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#D4D4D8}
+.svc-foot{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.svc-foot strong{font:900 1.35rem var(--font-display);color:var(--c);font-variant-numeric:tabular-nums}
+.svc.custom,.pkg.feat{border:1.5px solid transparent;background:linear-gradient(#121216,#121216) padding-box,linear-gradient(135deg,#8B5CF6,#06B6D4) border-box}
+.svc.custom .btn{margin-top:auto}
+
+/* samples */
+.samples{display:grid;gap:22px;padding:30px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.samples{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:center;gap:40px;padding:36px 40px}}
+.samples h3{font:900 1.6rem/1.35 var(--font-display);margin-bottom:6px}
+.samples p{color:var(--muted)}
+.plinks{display:flex;flex-wrap:wrap;gap:10px}
+.plink{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line-strong);color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem;transition:border-color .25s,background .25s}
+.plink:hover{border-color:rgba(139,92,246,.6);background:rgba(139,92,246,.12)}
+.plink i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+
+/* packages */
+.pk-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:stretch}
+.pkg{display:flex;flex-direction:column;gap:16px;padding:30px 26px;min-width:0}
+.pkg.feat{box-shadow:0 24px 60px -24px rgba(139,92,246,.5)}
+.pkg .tag{width:fit-content;font-size:.82rem;font-weight:700;padding:2px 12px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--muted)}
+.pkg.feat .tag{background:var(--grad);border-color:transparent;color:#09090B;font-weight:800}
+.pkg h3{font:900 1.9rem/1.2 var(--font-display)}
+.pkg .for{color:var(--muted);font-size:.95rem}
+.price{font:900 2.6rem/1 var(--font-display);font-variant-numeric:tabular-nums}
+.was{margin-top:8px;font-size:.93rem;color:var(--muted)}
+.was s{font-variant-numeric:tabular-nums}
+.save{display:inline-block;margin-inline-start:6px;padding:1px 10px;border-radius:99px;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.32);color:var(--amber);font-weight:700;font-size:.85rem}
+.pkg ul{list-style:none;margin:0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:9px;flex:1;align-content:start;font-size:.96rem}
+.pkg li{display:flex;gap:10px}
+.pkg li::before{content:"✓";font-weight:800;color:var(--cyan-t);flex:none}
+.pkg .acts{display:grid;gap:10px}
+
+/* process */
+.steps{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.pstep{padding:24px;min-width:0}
+.pstep .n{width:40px;height:40px;border-radius:50%;background:var(--grad);color:#09090B;font:900 1.05rem var(--font-display);display:grid;place-items:center;margin-bottom:14px}
+.pstep h3{font:800 1.1rem/1.4 var(--font-display);margin-bottom:4px}
+.pstep p{color:var(--muted);font-size:.95rem}
+
+/* builder */
+#builder{padding-bottom:0}
+.b-grid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr);align-items:start;margin-bottom:72px}
+@media (min-width:960px){
+  .b-grid{grid-template-columns:minmax(0,1fr) 390px}
+  .summary{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px)}
+}
+.grp{margin-bottom:22px;padding:6px 20px 10px}
+.grp h3{display:flex;align-items:center;gap:12px;font:800 1.15rem/1.4 var(--font-display);padding:14px 0;border-bottom:1px solid var(--line)}
+.grp h3 .ico{width:38px;height:38px;border-radius:11px}
+.grp h3 .ico svg{width:19px;height:19px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 10px;border-bottom:1px solid var(--line);border-radius:12px;transition:background .25s}
+.row:last-child{border-bottom:0}
+.row.on{background:rgba(139,92,246,.11)}
+.row-info{min-width:0}
+.row-info strong{display:block;font-weight:700}
+.row-info span{color:var(--muted);font-size:.9rem}
+.stepper{display:flex;align-items:center;gap:6px;flex:none}
+.stepper button{width:42px;height:42px;border-radius:12px;border:1px solid var(--line-strong);background:rgba(255,255,255,.05);color:var(--ink);font:600 1.35rem/1 var(--font-body);cursor:pointer;transition:transform .15s,background .2s,border-color .2s}
+.stepper button:hover:not(:disabled){border-color:var(--purple);background:rgba(139,92,246,.16)}
+.stepper button:active:not(:disabled){transform:scale(.9)}
+.stepper button:disabled{opacity:.3;cursor:default}
+.stepper output{min-width:30px;text-align:center;font:800 1.15rem var(--font-display);font-variant-numeric:tabular-nums}
+.summary{padding:24px;display:grid;gap:15px}
+.summary h3{font:800 1.25rem var(--font-display)}
+.sum-lines{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.95rem}
+.sum-lines li{display:flex;justify-content:space-between;gap:12px}
+.sum-lines em{font-style:normal;font-variant-numeric:tabular-nums;white-space:nowrap}
+.sum-lines .disc{color:var(--amber);font-weight:700}
+.sum-empty{color:var(--muted)}
+.sum-tot{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px solid var(--line);padding-top:15px}
+.sum-tot strong{font:900 2.1rem/1.1 var(--font-display);font-variant-numeric:tabular-nums}
+.tier{position:relative;height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}
+.tier i{position:absolute;inset-block:0;inset-inline-start:0;width:0;background:var(--grad);border-radius:99px;transition:width .45s cubic-bezier(.22,1,.36,1)}
+.tier b{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--bg)}
+.tier-l{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));font-size:.78rem;line-height:1.4;color:var(--muted);margin-top:-8px}
+.tier-l span:nth-child(2){text-align:center}
+.tier-l span:nth-child(3){text-align:end}
+.tier-l .hit{color:var(--cyan-t);font-weight:700}
+.hint{color:var(--muted);font-size:.9rem}
+.link-btn{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font:inherit;justify-self:start;padding:6px 0}
+.bar{display:none}
+@media (max-width:959px){
+  .bar{display:block;position:sticky;bottom:0;z-index:40;background:rgba(18,18,22,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line-strong);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px))}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .bar small{display:block;color:var(--muted);line-height:1.2}
+  .bar b{font:900 1.4rem/1.2 var(--font-display);font-variant-numeric:tabular-nums}
+}
+
+/* contact */
+.contact-card{position:relative;display:grid;gap:32px;padding:36px 28px;grid-template-columns:minmax(0,1fr);border:1.5px solid transparent;background:linear-gradient(#121216,#121216) padding-box,linear-gradient(135deg,#8B5CF6,#06B6D4) border-box;border-radius:26px}
+@media (min-width:960px){.contact-card{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px;padding:48px 52px}}
+.contact-card h2{font:900 clamp(1.8rem,4.5vw,2.6rem)/1.3 var(--font-display);margin-bottom:10px}
+.contact-card p{color:var(--muted);max-width:30em}
+.contact-card .btn{margin-top:24px}
+.crow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;padding:18px 0;border-top:1px solid var(--line)}
+.crow:last-child{border-bottom:1px solid var(--line)}
+.crow small{display:block;color:var(--muted)}
+.crow .val{font:700 1.2rem/1.4 var(--font-body);direction:ltr;text-align:left;unicode-bidi:isolate;overflow-wrap:anywhere;min-width:0;user-select:all}
+.crow .cb{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.crow .mailto{color:var(--cyan-t);font-size:.92rem}
+
+footer{border-top:1px solid var(--line);padding-block:32px}
+.foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.foot nav{display:flex;flex-wrap:wrap;gap:20px}
+.foot nav a{color:var(--muted);text-decoration:none;font-size:.95rem}
+.foot nav a:hover{color:var(--ink)}
+.foot p{color:var(--muted);font-size:.88rem;width:100%}
+.fab{display:none}
+@media (min-width:960px){
+  .fab{display:inline-flex;position:fixed;z-index:45;left:max(22px,env(safe-area-inset-left,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));animation:fabring 2.4s ease-out infinite}
+}
+@keyframes fabring{0%{box-shadow:0 0 0 0 rgba(139,92,246,.55),0 14px 34px -8px rgba(139,92,246,.7)}100%{box-shadow:0 0 0 18px rgba(139,92,246,0),0 14px 34px -8px rgba(139,92,246,.7)}}
+
+/* terms + faq */
+.ambient{opacity:.6}
+.terms{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.term{padding:24px;min-width:0}
+.term h3{font:800 1.15rem/1.4 var(--font-display);margin-bottom:6px}
+.term p{color:var(--muted);font-size:.95rem}
+.faq{margin-top:28px;display:grid;gap:10px;max-width:46rem}
+.faq details{border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:0 18px}
+.faq summary{cursor:pointer;list-style:none;padding:16px 0;font:700 1.02rem var(--font-display);display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--cyan-t);font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{color:var(--muted);padding-bottom:16px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .mq-track{flex-wrap:wrap;width:auto}
+}
+</style>
+</head>
+<body>
+
+
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="prog" id="prog" aria-hidden="true"></div>
+<div id="app" lang="ar" dir="rtl">
+  <header class="top">
+    <div class="wrap">
+      <div class="top-in">
+        <a class="brand" href="#top" aria-label="MG Dragon">
+          <span class="mark"><span><b class="grad">MG</b></span></span>
+          <span><span class="brand-name">MG Dragon</span><span class="brand-sub">Design · Motion · AI · Marketing</span></span>
+        </a>
+        <nav aria-label="أقسام الموقع">
+          <a href="#services">خدماتنا</a>
+          <a href="#samples">نماذج الأعمال</a>
+          <a href="#packages">الباقات</a>
+          <a href="#builder">صمم باقتك</a>
+          <a href="#contact">تواصل معنا</a>
+        </nav>
+        <div class="top-act">
+          <a class="btn sm" data-wa="hello" target="_blank" rel="noopener"><span class="lbl">تواصل واتساب</span></a>
+          <button class="menu-btn" id="menuBtn" type="button" aria-label="القائمة" aria-expanded="false" aria-controls="mMenu">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="mmenu" id="mMenu" hidden>
+        <a href="#services">خدماتنا</a>
+        <a href="#samples">نماذج الأعمال</a>
+        <a href="#packages">الباقات</a>
+        <a href="#builder">صمم باقتك</a>
+        <a href="#contact">تواصل معنا</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="heroSec">
+      <canvas id="fx" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div>
+          <span class="badge"><i></i>تصميم · مونتاج · ذكاء اصطناعي · تسويق</span>
+          <h1 aria-label="محتوى بصري احترافي يرفع مستوى علامتك التجارية">
+            <span class="w"><span style="--i:0">محتوى</span></span>
+            <span class="w"><span style="--i:1">بصري</span></span>
+            <span class="w"><span style="--i:2">احترافي</span></span>
+            <span class="w"><span style="--i:3">يرفع</span></span>
+            <span class="w g"><span style="--i:4">مستوى</span></span>
+            <span class="w g"><span style="--i:5">علامتك</span></span>
+            <span class="w g"><span style="--i:6">التجارية</span></span>
+          </h1>
+          <p class="lead">شريكك في <b>التصميم بالفوتوشوب</b>، <b>المونتاج</b>، <b>فيديوهات الذكاء الاصطناعي</b>، <b>التسويق</b> و<b>إدارة الصفحات</b>. أسعار معلنة وباقات جاهزة، أو ركّب باقتك بنفسك والسعر يتحسب قدامك.</p>
+          <div class="cta-row">
+            <a class="btn" data-wa="start" target="_blank" rel="noopener"><span>ابدأ مشروعك على واتساب</span></a>
+            <a class="btn ghost" href="#packages">استكشف الباقات والأسعار</a>
+          </div>
+          <div class="stats">
+            <div><strong class="grad" id="stSvc">5</strong><span>خدمات</span></div>
+            <div><strong class="grad" id="stPkg">3</strong><span>باقات جاهزة</span></div>
+            <div><strong class="grad">10%</strong><span>أقصى خصم تلقائي</span></div>
+          </div>
+        </div>
+
+        <div class="studio glass" id="studio" aria-hidden="true">
+          <div class="st-head"><span class="dots"><i></i><i></i><i></i></span><span>MG DRAGON · TIMELINE</span><span class="rec"><i></i>REC</span></div>
+          <div class="st-view">
+            <i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i>
+            <div class="ring"></div><div class="ring-t grad">MG</div>
+            <div class="l3"><b></b><span>MOTION GRAPHICS</span></div>
+          </div>
+          <div class="st-time"><span id="tc">00:00:03:12</span><span>24 FPS · 4K</span></div>
+          <div class="tl">
+            <div class="tr"><b>V2</b><div class="lane"><span class="clip k1" style="left:3%;width:30%">REEL</span><span class="clip k2" style="left:37%;width:21%">AD</span><span class="clip k1" style="left:62%;width:34%">YOUTUBE</span></div></div>
+            <div class="tr"><b>FX</b><div class="lane"><span class="clip k4" style="left:10%;width:24%">MOTION</span><span class="clip k3" style="left:46%;width:18%">TEXT</span><span class="clip k4" style="left:70%;width:20%">TRANSITION</span></div></div>
+            <div class="tr"><b>AI</b><div class="lane"><span class="clip k2" style="left:0;width:26%">AI GEN</span><span class="clip k1" style="left:30%;width:36%">AI VIDEO</span><span class="clip k3" style="left:70%;width:26%">AI IMAGES</span></div></div>
+            <div class="tr"><b>A1</b><div class="lane wave" id="wave"></div></div>
+            <div class="ph-wrap"><div class="ph" id="ph"></div></div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="mq-track" id="mq"></div></div>
+
+    <section class="s" id="services">
+      <div class="wrap">
+        <div class="sh">
+          <span class="eyebrow">خبرة متكاملة لنمو شغلك</span>
+          <h2>خدمات MG Dragon</h2>
+          <p>خمس خدمات تدمج الإبداع وأدوات الذكاء الاصطناعي، وكل خدمة ليها أسعار معلنة تقدر تحسبها بنفسك.</p>
+        </div>
+        <div class="grid3" id="serviceGrid"></div>
+      </div>
+    </section>
+
+    <section class="s" id="samples" style="padding-top:0">
+      <div class="wrap">
+        <div class="samples glass">
+          <div>
+            <h3>شوف النماذج قبل ما تقرر</h3>
+            <p>اطلب نماذج من الخدمة اللي تهمك على واتساب، وتوصلك مباشرة.</p>
+          </div>
+          <div class="plinks" id="samplePills"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s" id="packages">
+      <div class="wrap">
+        <div class="sh">
+          <span class="eyebrow">باقات جاهزة</span>
+          <h2>باقات شهرية بسعر أوفر من الخدمات منفصلة</h2>
+          <p>ابعت الباقة على واتساب زي ما هي، أو عدّلها في الحاسبة تحت.</p>
+        </div>
+        <div class="pk-grid" id="pkGrid"></div>
+      </div>
+    </section>
+
+    <section class="s" id="process" style="padding-top:0">
+      <div class="wrap">
+        <div class="sh">
+          <span class="eyebrow">طريقة الشغل</span>
+          <h2>من أول رسالة لحد التسليم</h2>
+        </div>
+        <div class="steps">
+          <div class="pstep glass spot"><div class="n">1</div><h3>تبعت طلبك</h3><p>على واتساب، باقة جاهزة أو الباقة اللي ركّبتها بنفسك.</p></div>
+          <div class="pstep glass spot"><div class="n">2</div><h3>نتفق على التفاصيل</h3><p>المطلوب بالظبط، السعر النهائي، وميعاد التسليم.</p></div>
+          <div class="pstep glass spot"><div class="n">3</div><h3>أبدأ الشغل</h3><p>وتشوف نسخة أولى عشان نعدّل عليها سوا.</p></div>
+          <div class="pstep glass spot"><div class="n">4</div><h3>تسليم الملفات</h3><p>بعد التعديلات، بتستلم الشغل النهائي جاهز للنشر.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s" id="builder">
+      <div class="wrap">
+        <div class="sh">
+          <span class="eyebrow">حاسبة الأسعار</span>
+          <h2>صمم باقتك بنفسك</h2>
+          <p>اختار اللي محتاجه بالعدد، والتكلفة بتتحسب فورًا. فيه خصم تلقائي لما الإجمالي يكبر. الاختيار الحالي مثال، عدّل عليه زي ما تحب.</p>
+        </div>
+        <div class="b-grid">
+          <div id="picker"></div>
+          <aside class="summary glass" aria-label="ملخص باقتك">
+            <h3>باقتك</h3>
+            <ul class="sum-lines" id="sumLines"></ul>
+            <div class="sum-tot"><span>الإجمالي</span><strong id="sumTotal" aria-live="polite">0 ج.م</strong></div>
+            <div>
+              <div class="tier"><i id="tierFill"></i><b></b></div>
+              <div class="tier-l" id="tierL"></div>
+            </div>
+            <p class="hint" id="sumHint"></p>
+            <a class="btn" id="waCustom" target="_blank" rel="noopener"><span>ابعت باقتك على واتساب</span></a>
+            <button class="link-btn" id="clearAll" type="button">امسح الاختيارات</button>
+          </aside>
+        </div>
+      </div>
+      <div class="bar">
+        <div class="wrap">
+          <div><small>إجمالي باقتك</small><b id="barTotal">0 ج.م</b></div>
+          <a class="btn sm" id="waBar" target="_blank" rel="noopener"><span>ابعتها على واتساب</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="s" id="terms" style="padding-top:0">
+      <div class="wrap">
+        <div class="sh">
+          <span class="eyebrow">شروط واضحة</span>
+          <h2>اتفاق مكتوب قبل أي بداية</h2>
+        </div>
+        <div class="terms">
+          <div class="term glass spot"><h3>عربون 50%</h3><p>نبدأ الشغل بعد دفع نصف المبلغ، والباقي عند التسليم.</p></div>
+          <div class="term glass spot"><h3>جولتين تعديل</h3><p>تعديلات مشمولة في السعر على كل شغلة حتى توصل للمطلوب.</p></div>
+          <div class="term glass spot"><h3>ميعاد محدد</h3><p>بنتفق على موعد التسليم قبل البداية ونلتزم بيه.</p></div>
+          <div class="term glass spot"><h3>جودة جاهزة للنشر</h3><p>ملفات نهائية بجودة عالية ومقاسات مناسبة لكل منصة.</p></div>
+        </div>
+        <div class="faq">
+          <details><summary>هل الأسعار نهائية؟</summary><p>الأسعار المعروضة أساسية، والسعر النهائي بيتأكد معاك على واتساب حسب تفاصيل الشغل.</p></details>
+          <details><summary>هل ميزانية الإعلانات مشمولة؟</summary><p>لا، ميزانية الإعلان بتتدفع مباشرة للمنصة. اللي في السعر هو إدارة الحملات.</p></details>
+          <details><summary>ينفع أطلب خدمة واحدة بس؟</summary><p>أكيد، اختارها من الحاسبة واتحسب سعرها لوحدها.</p></details>
+          <details><summary>إزاي بنتواصل أثناء الشغل؟</summary><p>على واتساب، وبتشوف نسخة أولى قبل التسليم النهائي.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="s" id="contact" style="padding-top:0">
+      <div class="wrap">
+        <div class="contact-card">
+          <div>
+            <h2>جاهز نبدأ شغل؟</h2>
+            <p>ابعتلي على واتساب بالمطلوب وهرد عليك بالتفاصيل والمواعيد.</p>
+            <a class="btn" data-wa="hello" target="_blank" rel="noopener"><span>كلمني على واتساب</span></a>
+          </div>
+          <div>
+            <div class="crow">
+              <div><small>رقم الواتساب</small><span class="val num" id="phoneVal">01273447947</span></div>
+              <div class="cb"><button class="btn ghost sm" type="button" data-copy="phoneVal">نسخ</button></div>
+            </div>
+            <div class="crow">
+              <div style="min-width:0"><small>الإيميل</small><span class="val" id="mailVal">mahmoudsaeedghanem@gmail.com</span></div>
+              <div class="cb">
+                <button class="btn ghost sm" type="button" data-copy="mailVal">نسخ</button>
+                <a class="mailto" href="mailto:mahmoudsaeedghanem@gmail.com">فتح الإيميل</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <a class="brand" href="#top" aria-label="MG Dragon"><span class="brand-name">MG Dragon</span></a>
+      <nav aria-label="روابط سريعة">
+        <a href="#services">الخدمات</a><a href="#packages">الباقات</a><a href="#builder">الحاسبة</a><a href="#contact">تواصل</a>
+      </nav>
+      <p>© 2026 MG Dragon. كل الأسعار بالجنيه المصري، وبتتأكد على واتساب قبل ما نبدأ.</p>
+    </div>
+  </footer>
+
+  <a class="btn fab" data-wa="hello" target="_blank" rel="noopener"><span>واتساب</span></a>
+</div>
+
+<script>
+(function(){
+  var PHONE_INTL = '201273447947';
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var T1 = 6000, T2 = 12000;
+  var WA_ICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.8 2.8 4.4 3.9 2.6 1.1 2.6.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3z"/></svg>';
+  var ICONS = {
+    design:'<rect x="3" y="3" width="18" height="18" rx="2.5"/><circle cx="8.5" cy="8.5" r="1.6"/><path d="m21 15-5-5L5 21"/>',
+    edit:'<rect x="2.5" y="2.5" width="19" height="19" rx="2.5"/><path d="M7 2.5v19M17 2.5v19M2.5 12h19M2.5 7h4.5M2.5 17h4.5M17 17h4.5M17 7h4.5"/>',
+    ai:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M17 5h4M5 17v4M3 19h4"/>',
+    marketing:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+    pages:'<rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4M9 15l2 2 4-4"/>',
+    plus:'<path d="M12 5v14M5 12h14"/>'
+  };
+  function icon(n){ return '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[n] + '</svg>'; }
+
+  function wa(text){ return 'https://wa.me/' + PHONE_INTL + '?text=' + encodeURIComponent(text); }
+  function num(n){ return n.toLocaleString('en-US'); }
+  function fmt(n){ return num(n) + ' ج.م'; }
+  function $(id){ return document.getElementById(id); }
+
+  var SERVICES = [
+    { id:'design', name:'تصميم فوتوشوب', icon:'design', color:'#F472B6', blurb:'تصميمات للسوشيال ميديا والطباعة، من بوست واحد لهوية كاملة.', items:[
+      { id:'post',    name:'بوست سوشيال ميديا', note:'تصميم واحد بمقاس المنصة', price:350, unit:'للتصميم' },
+      { id:'poster',  name:'بوستر أو فلاير', note:'جاهز للطباعة', price:650, unit:'للتصميم' },
+      { id:'thumb',   name:'ثامبنيل يوتيوب', note:'تصميم واحد', price:350, unit:'للتصميم' },
+      { id:'retouch', name:'تعديل وتنضيف صورة', note:'ريتوتش وإزالة خلفية', price:200, unit:'للصورة' },
+      { id:'logo',    name:'لوجو', note:'مع ملفات بكل الصيغ', price:2500, unit:'للوجو' },
+      { id:'brand',   name:'هوية بصرية كاملة', note:'لوجو وألوان وخطوط ودليل استخدام', price:6500, unit:'للهوية' }
+    ]},
+    { id:'edit', name:'مونتاج فيديو', icon:'edit', color:'#22D3EE', blurb:'مونتاج بإيقاع سريع للسوشيال وفيديوهات أطول لليوتيوب.', items:[
+      { id:'reel',    name:'ريلز / تيك توك', note:'حتى 60 ثانية', price:700, unit:'للفيديو' },
+      { id:'ytvideo', name:'فيديو يوتيوب', note:'حتى 10 دقايق', price:2200, unit:'للفيديو' },
+      { id:'adedit',  name:'إعلان قصير', note:'حتى 30 ثانية بمؤثرات وموسيقى', price:1500, unit:'للإعلان' },
+      { id:'subs',    name:'ترجمة وتنسيق نصوص الفيديو', note:'ترجمة مكتوبة على الفيديو', price:350, unit:'للفيديو' }
+    ]},
+    { id:'ai', name:'فيديوهات بالذكاء الاصطناعي', icon:'ai', color:'#A78BFA', blurb:'فيديوهات وصور مبنية على فكرتك بأدوات الذكاء الاصطناعي.', items:[
+      { id:'ai15',  name:'فيديو AI قصير', note:'حتى 15 ثانية من فكرتك', price:1500, unit:'للفيديو' },
+      { id:'ai30',  name:'فيديو AI متوسط', note:'حتى 30 ثانية', price:2800, unit:'للفيديو' },
+      { id:'aiad',  name:'إعلان منتج بالذكاء الاصطناعي', note:'حتى 30 ثانية مع موسيقى وتعليق', price:3800, unit:'للإعلان' },
+      { id:'aiimg', name:'صور بالذكاء الاصطناعي', note:'مجموعة 5 صور', price:600, unit:'للمجموعة' }
+    ]},
+    { id:'marketing', name:'تسويق', icon:'marketing', color:'#F59E0B', blurb:'خطة واضحة وإعلانات ممولة ومحتوى مكتوب لصفحتك.', items:[
+      { id:'plan',  name:'خطة تسويق شهرية', note:'أهداف وجدول محتوى وقنوات', price:3500, unit:'للخطة' },
+      { id:'ads',   name:'إدارة حملات إعلانية ممولة', note:'للشهر، ميزانية الإعلان منفصلة', price:4000, unit:'للشهر' },
+      { id:'copy',  name:'كتابة محتوى', note:'10 بوستات بكابشن', price:900, unit:'للمجموعة' },
+      { id:'audit', name:'تحليل صفحتك والمنافسين', note:'تقرير بنقاط القوة والتحسين', price:1200, unit:'للتقرير' }
+    ]},
+    { id:'pages', name:'إدارة صفحات', icon:'pages', color:'#34D399', blurb:'جدولة ونشر ومتابعة لصفحاتك على السوشيال ميديا.', items:[
+      { id:'manage',  name:'إدارة صفحة واحدة', note:'جدولة ونشر ومتابعة الأداء', price:4500, unit:'للشهر' },
+      { id:'extra',   name:'منصة إضافية', note:'نفس الإدارة على منصة تانية', price:2000, unit:'للشهر' },
+      { id:'replies', name:'متابعة الردود والرسائل', note:'الرد على التعليقات والرسايل', price:1400, unit:'للشهر' }
+    ]}
+  ];
+
+  var ITEMS = {};
+  SERVICES.forEach(function(s){ s.items.forEach(function(i){ ITEMS[i.id] = i; }); });
+  function fromPrice(s){ return Math.min.apply(null, s.items.map(function(i){ return i.price; })); }
+
+  var PACKAGES = [
+    { id:'spark',  name:'Starter', tag:'للبداية', price:4000, who:'صفحة جديدة محتاجة محتوى شكله حلو.',
+      items:[['post',8],['reel',2],['copy',1]] },
+    { id:'flame',  name:'Growth', tag:'الأكثر طلبًا', price:9900, feat:true, who:'صفحة شغالة عايزة حد يديرها ويطلعلها محتوى منتظم.',
+      items:[['manage',1],['post',12],['reel',4],['replies',1]] },
+    { id:'dragon', name:'Premium', tag:'الأشمل', price:22900, who:'نشاط عايز يتواجد على أكتر من منصة مع إعلانات وخطة.',
+      items:[['manage',1],['extra',1],['post',16],['reel',8],['ai15',2],['ads',1],['plan',1],['replies',1]] }
+  ];
+  function pkgSum(p){ return p.items.reduce(function(t,x){ return t + ITEMS[x[0]].price * x[1]; }, 0); }
+
+  /* header menu */
+  var mb = $('menuBtn'), mm = $('mMenu');
+  mb.addEventListener('click', function(){
+    var open = mm.hidden;
+    mm.hidden = !open;
+    mb.setAttribute('aria-expanded', String(open));
+  });
+  mm.addEventListener('click', function(e){
+    if(e.target.closest('a')){ mm.hidden = true; mb.setAttribute('aria-expanded', 'false'); }
+  });
+
+  /* static WhatsApp links */
+  var GREET = {
+    hello: 'السلام عليكم، جيت من موقع MG Dragon وعايز أستفسر عن خدماتك.',
+    start: 'السلام عليكم، عايز أبدأ مشروع مع MG Dragon. ممكن نتكلم في التفاصيل؟'
+  };
+  document.querySelectorAll('[data-wa]').forEach(function(a){
+    a.href = wa(GREET[a.dataset.wa]);
+    a.insertAdjacentHTML('afterbegin', WA_ICON);
+  });
+
+  $('stSvc').textContent = SERVICES.length;
+  $('stPkg').textContent = PACKAGES.length;
+
+  /* marquee */
+  var MQ = [['تصميم فوتوشوب','fill'],['PHOTOSHOP','line'],['مونتاج فيديو','fill'],['VIDEO EDITING','line'],['فيديوهات AI','fill'],['AI VIDEO','line'],['تسويق','fill'],['MARKETING','line'],['إدارة صفحات','fill'],['PAGE MANAGEMENT','line']];
+  var mqHtml = MQ.map(function(m){ return '<span class="mq-item ' + m[1] + '">' + m[0] + '</span>'; }).join('');
+  $('mq').innerHTML = mqHtml + mqHtml;
+
+  /* services */
+  $('serviceGrid').innerHTML = SERVICES.map(function(s){
+    return '<article class="svc glass spot" style="--c:' + s.color + '">' +
+      '<div class="ico">' + icon(s.icon) + '</div>' +
+      '<h3>' + s.name + '</h3><p>' + s.blurb + '</p>' +
+      '<ul class="chips">' + s.items.map(function(i){ return '<li>' + i.name + '</li>'; }).join('') + '</ul>' +
+      '<div class="svc-foot"><span>يبدأ من</span><strong>' + fmt(fromPrice(s)) + '</strong></div></article>';
+  }).join('') +
+  '<article class="svc custom spot" style="--c:#A78BFA"><div class="ico">' + icon('plus') + '</div>' +
+    '<h3>محتاج حاجة مخصوصة؟</h3>' +
+    '<p>ركّب باقتك من أي خدمة بالعدد اللي يناسبك، والسعر يتحسب قدامك لحظة بلحظة.</p>' +
+    '<a class="btn" href="#builder"><span>صمم باقتك</span></a></article>';
+
+  /* sample requests */
+  $('samplePills').innerHTML = SERVICES.map(function(s){
+    return '<a class="plink" style="--c:' + s.color + '" target="_blank" rel="noopener" href="' +
+      wa('السلام عليكم، عايز أشوف نماذج من أعمالك في: ' + s.name) + '"><i></i>' + s.name + '</a>';
+  }).join('');
+
+  /* packages */
+  $('pkGrid').innerHTML = PACKAGES.map(function(p){
+    var sum = pkgSum(p), save = sum - p.price;
+    var msg = 'السلام عليكم، مهتم بباقة «' + p.name + '» من MG Dragon بسعر ' + fmt(p.price) + '. ممكن تفاصيل أكتر؟';
+    return '<article class="pkg glass spot' + (p.feat ? ' feat' : '') + '">' +
+      '<span class="tag">' + p.tag + '</span>' +
+      '<h3>' + p.name + '</h3>' +
+      '<p class="for">' + p.who + '</p>' +
+      '<div><div class="price">' + fmt(p.price) + '</div>' +
+      '<div class="was">بدل <s>' + fmt(sum) + '</s><span class="save">وفّرت ' + fmt(save) + '</span></div></div>' +
+      '<ul>' + p.items.map(function(x){ return '<li><span>' + ITEMS[x[0]].name + ' (' + x[1] + ')</span></li>'; }).join('') + '</ul>' +
+      '<div class="acts">' +
+        '<a class="btn" target="_blank" rel="noopener" href="' + wa(msg) + '">' + WA_ICON + '<span>اطلب الباقة على واتساب</span></a>' +
+        '<button class="btn ghost" type="button" data-pkg="' + p.id + '">عدّلها في الحاسبة</button>' +
+      '</div></article>';
+  }).join('');
+
+  /* builder */
+  var state = { post:4, reel:2 };
+  var picker = $('picker');
+  picker.innerHTML = SERVICES.map(function(s){
+    return '<div class="grp glass spot" style="--c:' + s.color + '"><h3><span class="ico">' + icon(s.icon) + '</span>' + s.name + '</h3>' + s.items.map(function(i){
+      return '<div class="row" id="row-' + i.id + '">' +
+        '<div class="row-info"><strong>' + i.name + '</strong><span>' + i.note + ' · <span class="num">' + fmt(i.price) + '</span> ' + i.unit + '</span></div>' +
+        '<div class="stepper">' +
+          '<button type="button" data-act="dec" data-id="' + i.id + '" aria-label="تقليل ' + i.name + '">−</button>' +
+          '<output id="q-' + i.id + '">0</output>' +
+          '<button type="button" data-act="inc" data-id="' + i.id + '" aria-label="زيادة ' + i.name + '">+</button>' +
+        '</div></div>';
+    }).join('') + '</div>';
+  }).join('');
+
+  $('tierL').innerHTML = '<span>0</span><span>' + num(T1) + '<br>خصم 5%</span><span>' + num(T2) + '<br>خصم 10%</span>';
+
+  picker.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-act]');
+    if(!b) return;
+    var id = b.dataset.id;
+    var next = (state[id] || 0) + (b.dataset.act === 'inc' ? 1 : -1);
+    state[id] = Math.max(0, Math.min(20, next));
+    update();
+  });
+
+  $('clearAll').addEventListener('click', function(){
+    Object.keys(state).forEach(function(k){ delete state[k]; });
+    update();
+  });
+
+  $('pkGrid').addEventListener('click', function(e){
+    var b = e.target.closest('button[data-pkg]');
+    if(!b) return;
+    var p = PACKAGES.filter(function(x){ return x.id === b.dataset.pkg; })[0];
+    Object.keys(state).forEach(function(k){ delete state[k]; });
+    p.items.forEach(function(x){ state[x[0]] = x[1]; });
+    update();
+    $('builder').scrollIntoView();
+  });
+
+  function calc(){
+    var lines = [], subtotal = 0;
+    SERVICES.forEach(function(s){ s.items.forEach(function(i){
+      var q = state[i.id] || 0;
+      if(q > 0){ lines.push({ name:i.name, q:q, amount:i.price * q }); subtotal += i.price * q; }
+    }); });
+    var pct = subtotal >= T2 ? 10 : subtotal >= T1 ? 5 : 0;
+    var off = Math.round(subtotal * pct / 100);
+    return { lines:lines, subtotal:subtotal, pct:pct, off:off, total:subtotal - off };
+  }
+
+  var cur = {};
+  function setNum(el, to){
+    if(REDUCED){ el.textContent = fmt(to); cur[el.id] = to; return; }
+    var from = cur[el.id] || 0;
+    cancelAnimationFrame(el._r);
+    var t0 = performance.now();
+    (function step(now){
+      var k = Math.min(1, (now - t0) / 450), e = 1 - Math.pow(1 - k, 3);
+      var v = Math.round(from + (to - from) * e);
+      el.textContent = fmt(v); cur[el.id] = v;
+      if(k < 1) el._r = requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function update(){
+    SERVICES.forEach(function(s){ s.items.forEach(function(i){
+      var q = state[i.id] || 0;
+      $('q-' + i.id).textContent = q;
+      $('row-' + i.id).classList.toggle('on', q > 0);
+      $('row-' + i.id).querySelector('[data-act="dec"]').disabled = q === 0;
+    }); });
+
+    var c = calc();
+    $('sumLines').innerHTML = c.lines.length
+      ? c.lines.map(function(l){ return '<li><span>' + l.name + ' × ' + l.q + '</span><em>' + fmt(l.amount) + '</em></li>'; }).join('') +
+        (c.pct ? '<li class="disc"><span>خصم ' + c.pct + '%</span><em>− ' + fmt(c.off) + '</em></li>' : '')
+      : '<li class="sum-empty">اختار خدمة من القايمة وهتظهر هنا.</li>';
+
+    setNum($('sumTotal'), c.total);
+    setNum($('barTotal'), c.total);
+
+    $('tierFill').style.width = Math.min(100, c.subtotal / T2 * 100) + '%';
+    var tl = $('tierL').children;
+    tl[1].classList.toggle('hit', c.subtotal >= T1);
+    tl[2].classList.toggle('hit', c.subtotal >= T2);
+
+    var hint = '';
+    if(c.subtotal > 0){
+      if(c.subtotal < T1) hint = 'ضيف ' + fmt(T1 - c.subtotal) + ' وتاخد خصم 5%.';
+      else if(c.subtotal < T2) hint = 'ضيف ' + fmt(T2 - c.subtotal) + ' وتوصل لخصم 10%.';
+      else hint = 'وصلت لأعلى خصم: 10%.';
+    }
+    $('sumHint').textContent = hint;
+
+    var msg = 'السلام عليكم، عايز أطلب باقة مخصصة من MG Dragon:\n' +
+      c.lines.map(function(l){ return '• ' + l.name + ' × ' + l.q + ' = ' + fmt(l.amount); }).join('\n') +
+      '\nالإجمالي: ' + fmt(c.total) + (c.pct ? ' (بعد خصم ' + c.pct + '%)' : '') +
+      '\nممكن نتكلم في التفاصيل؟';
+    ['waCustom','waBar'].forEach(function(id){
+      var a = $(id);
+      a.href = c.lines.length ? wa(msg) : '#builder';
+      a.classList.toggle('disabled', !c.lines.length);
+    });
+  }
+
+  ['waCustom','waBar'].forEach(function(id){ $(id).insertAdjacentHTML('afterbegin', WA_ICON); });
+  update();
+
+  /* copy buttons */
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = $(btn.dataset.copy), text = el.textContent, old = btn.textContent;
+      function done(msg){ btn.textContent = msg; setTimeout(function(){ btn.textContent = old; }, 1800); }
+      function select(){
+        try{ var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }catch(_){}
+        done('انسخه من التحديد');
+      }
+      try{
+        navigator.clipboard.writeText(text).then(function(){ done('تم النسخ'); }, select);
+      }catch(_){ select(); }
+    });
+  });
+
+  /* ---------- motion ---------- */
+
+  /* scroll progress */
+  var prog = $('prog');
+  function sp(){
+    var h = document.documentElement, m = h.scrollHeight - h.clientHeight;
+    prog.style.transform = 'scaleX(' + (m > 0 ? Math.min(1, h.scrollTop / m) : 0) + ')';
+  }
+  window.addEventListener('scroll', sp, { passive:true }); sp();
+
+  /* spotlight following the pointer */
+  document.addEventListener('pointermove', function(e){
+    var c = e.target.closest && e.target.closest('.spot');
+    if(!c) return;
+    var r = c.getBoundingClientRect();
+    c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive:true });
+
+  /* reveal on scroll (movement only, content stays visible) */
+  if(!REDUCED && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold:.1, rootMargin:'0px 0px -4% 0px' });
+    document.querySelectorAll('.sh,.svc,.samples,.pkg,.pstep,.grp,.summary,.contact-card').forEach(function(el){
+      var sibs = el.parentNode.children, idx = Array.prototype.indexOf.call(sibs, el);
+      el.style.transitionDelay = ((idx % 4) * 90) + 'ms';
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
+
+  /* waveform bars */
+  var wave = $('wave');
+  for(var i = 0; i < 64; i++){
+    var b = document.createElement('i');
+    var h = 25 + Math.abs(Math.sin(i * 1.7) + Math.sin(i * .55) * .8) * 38;
+    b.style.height = Math.min(100, h) + '%';
+    b.style.animationDelay = (-(i % 9) * .13) + 's';
+    wave.appendChild(b);
+  }
+
+  /* timeline playhead + timecode */
+  if(!REDUCED){
+    var tc = $('tc'), ph = $('ph'), studio = $('studio'), DUR = 9000, T0 = performance.now(), live = false, running = false;
+    var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+    var tick = function(now){
+      if(!live){ running = false; return; }
+      var p = ((now - T0) % DUR) / DUR, s = p * DUR / 1000, sec = Math.floor(s), fr = Math.floor((s - sec) * 24);
+      ph.style.left = (p * 100) + '%';
+      tc.textContent = '00:00:' + pad(sec) + ':' + pad(fr);
+      requestAnimationFrame(tick);
+    };
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        live = es[0].isIntersecting;
+        if(live && !running){ running = true; requestAnimationFrame(tick); }
+      }).observe(studio);
+    }
+  }
+
+  /* interactive particle field */
+  (function(){
+    var cv = $('fx'), hero = $('heroSec');
+    if(REDUCED || !cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), W = 0, H = 0, pts = [], mouse = { x:-999, y:-999 }, vis = false, going = false;
+    var COL = ['139,92,246', '6,182,212', '245,158,11'];
+    function size(){
+      var r = hero.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+      W = r.width; H = r.height;
+      cv.width = W * d; cv.height = H * d;
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+      var n = Math.round(Math.min(70, W * H / 15000));
+      pts = [];
+      for(var i = 0; i < n; i++){
+        pts.push({ x:Math.random() * W, y:Math.random() * H, vx:(Math.random() - .5) * .4, vy:(Math.random() - .5) * .4, r:1 + Math.random() * 1.8, c:COL[i % 3] });
+      }
+    }
+    function frame(){
+      if(!vis){ going = false; return; }
+      ctx.clearRect(0, 0, W, H);
+      var i, j, p, q, dx, dy, d;
+      for(i = 0; i < pts.length; i++){
+        p = pts[i];
+        dx = p.x - mouse.x; dy = p.y - mouse.y; d = Math.sqrt(dx * dx + dy * dy);
+        if(d < 130 && d > 0){ p.vx += dx / d * .06; p.vy += dy / d * .06; }
+        p.vx *= .985; p.vy *= .985;
+        if(Math.abs(p.vx) < .08) p.vx += (Math.random() - .5) * .02;
+        if(Math.abs(p.vy) < .08) p.vy += (Math.random() - .5) * .02;
+        p.x += p.vx; p.y += p.vy;
+        if(p.x < 0 || p.x > W) p.vx *= -1;
+        if(p.y < 0 || p.y > H) p.vy *= -1;
+      }
+      for(i = 0; i < pts.length; i++){
+        p = pts[i];
+        for(j = i + 1; j < pts.length; j++){
+          q = pts[j]; dx = p.x - q.x; dy = p.y - q.y; d = Math.sqrt(dx * dx + dy * dy);
+          if(d < 120){
+            ctx.strokeStyle = 'rgba(' + p.c + ',' + ((1 - d / 120) * .32) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+          }
+        }
+        ctx.fillStyle = 'rgba(' + p.c + ',.85)';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.2832); ctx.fill();
+      }
+      requestAnimationFrame(frame);
+    }
+    size();
+    var rt;
+    window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(size, 150); });
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    }, { passive:true });
+    hero.addEventListener('pointerleave', function(){ mouse.x = -999; mouse.y = -999; });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        vis = es[0].isIntersecting;
+        if(vis && !going){ going = true; requestAnimationFrame(frame); }
+      }).observe(hero);
+    }else{ vis = true; going = true; requestAnimationFrame(frame); }
+  })();
+})();
+</script>
+
+</body>
+</html>
